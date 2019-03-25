@@ -1,0 +1,25 @@
+[package]
+name = "reporeco"
+version = "0.1.0"
+authors = ["Jacob LeGrone <git@jacob.work>"]
+edition = "2018"
+
+[dependencies]
+bincode = "1.1.2"
+dotenv = "0.13.0"
+clap = "2.32.0"
+env_logger = "0.5.10"
+envy = "0.3.2"
+failure = "*"
+graphql_client = "0.6.1"
+log = "0.4.3"
+prettytable-rs = "0.7.0"
+rand = "0.6.5"
+rayon = "1.0.3"
+recoreco = "0.1.9"
+reqwest = "^0.9.0"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+sled = "0.19.0"
+structopt = "0.2.10"

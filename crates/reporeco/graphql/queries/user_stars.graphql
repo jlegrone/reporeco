@@ -1,0 +1,42 @@
+query UserStars($search: String!, $maxUsers: Int!, $maxStars: Int!) {
+  ...rateLimit
+  search(first: $maxUsers, query: $search, type: USER) {
+    ...userStars
+  }
+}
+
+query UserStarsWithPagination($search: String!, $maxUsers: Int!, $maxStars: Int!, $cursor: String!) {
+  ...rateLimit
+  search(first: $maxUsers, query: $search, type: USER, after: $cursor) {
+    ...userStars
+  }
+}
+
+fragment rateLimit on Query {
+  rateLimit {
+    cost
+    limit
+    nodeCount
+    remaining
+  }
+}
+
+fragment userStars on SearchResultItemConnection {
+  userCount
+  pageInfo {
+    endCursor
+    hasNextPage
+  }
+  nodes {
+    __typename
+    ... on User {
+      id
+      starredRepositories(first: $maxStars, orderBy:{field:STARRED_AT,direction:DESC}) {
+        totalCount
+        nodes {
+          id
+        }
+      }
+    }
+  }
+}

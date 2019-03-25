@@ -1,0 +1,8 @@
+/target
+**/*.rs.bk
+.env
+
+indicators.json
+
+# Sled DB
+data

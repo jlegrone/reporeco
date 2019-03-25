@@ -1,0 +1,14 @@
+query RepositoryName($repo_id: ID!) {
+  node(id: $repo_id) {
+    __typename
+    ... on Repository {
+      nameWithOwner
+    }
+  }
+}
+
+query RepositoryID($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    id
+  }
+}
