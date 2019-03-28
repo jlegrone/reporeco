@@ -12,3 +12,20 @@ query RepositoryID($owner: String!, $name: String!) {
     id
   }
 }
+
+query SimilarRepositories($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    id
+    stargazers(first: 15, orderBy: {field:STARRED_AT, direction:DESC}) {
+      nodes {
+        __typename
+        starredRepositories(first: 50, orderBy: {field:STARRED_AT, direction:DESC}) {
+          nodes {
+            __typename
+            nameWithOwner
+          }
+        }
+      }
+    }
+  }
+}
